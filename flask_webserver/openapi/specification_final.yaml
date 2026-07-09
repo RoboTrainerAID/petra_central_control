@@ -1,0 +1,755 @@
+info:
+  description: Job Manager for PeTRA transports
+  version: 1.0.0
+  contact:
+    email: Andreas.Zachariae@gmail.com
+  title: PeTRA Job Manager
+servers:
+  - description: Flask
+    url: http://127.0.0.1:5000/
+tags:
+  - name: transport
+    description: Access to transport data
+  - name: user
+    description: Access to user data
+paths:
+  /transport/{transport_id}:
+    delete:
+      description: delete specific transport
+      tags:
+        - transport
+      parameters:
+        - in: path
+          name: transport_id
+          description: ID of Transport to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Transport deleted successfully
+    get:
+      description: get a single transport
+      tags:
+        - transport
+      parameters:
+        - in: path
+          name: transport_id
+          description: ID of Transport to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Transport returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                  status:
+                    type: integer
+                  mode:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  language:
+                    type: string
+                  start_location:
+                    type: string
+                  goal_location:
+                    type: string
+        '404':
+          description: Transport id doesn't exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      description: modify an existing transport
+      tags:
+        - transport
+      parameters:
+        - in: path
+          name: transport_id
+          description: ID of Transport to modify
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Transport object to update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                mode:
+                  type: integer
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                language:
+                  type: string
+                start_location:
+                  type: string
+                goal_location:
+                  type: string
+      responses:
+        '200':
+          description: Transport modified successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                  status:
+                    type: integer
+                  mode:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  language:
+                    type: string
+                  start_location:
+                    type: string
+                  goal_location:
+                    type: string
+        '404':
+          description: Transport id doesn't exist or missing json input parameter or location doesn't exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    patch:
+      description: modify an existing transport with incomplete data
+      tags:
+        - transport
+      parameters:
+        - in: path
+          name: transport_id
+          description: ID of Transport to modify
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Data to update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+      responses:
+        '200':
+          description: Transport modified successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                  status:
+                    type: integer
+                  mode:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  language:
+                    type: string
+                  start_location:
+                    type: string
+                  goal_location:
+                    type: string
+        '404':
+          description: Transport id doesn't exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /transports:
+    post:
+      description: create a new transport
+      tags:
+        - transport
+      requestBody:
+        description: Transport object to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                mode:
+                  type: integer
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                language:
+                  type: string
+                start_location:
+                  type: string
+                goal_location:
+                  type: string
+      responses:
+        '201':
+          description: Transport created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                  status:
+                    type: integer
+                  mode:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  language:
+                    type: string
+                  start_location:
+                    type: string
+                  goal_location:
+                    type: string
+        '404':
+          description: Missing json input parameter or location doesn't exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      description: delete all entries in the list
+      tags:
+        - transport
+      responses:
+        '200':
+          description: all entries deleted successfully
+    get:
+      description: gives list of all transports
+      tags:
+        - transport
+      responses:
+        '200':
+          description: list with at least one entry found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                  status:
+                    type: integer
+                  mode:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  language:
+                    type: string
+                  start_location:
+                    type: string
+                  goal_location:
+                    type: string
+        '404':
+          description: Transport list is empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    patch:
+      description: filter for a transport with key value
+      tags:
+        - transport
+      requestBody:
+        description: Filter data to search in transport list
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+      responses:
+        '200':
+          description: List of Transports with filtered value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                  status:
+                    type: integer
+                  mode:
+                    type: integer
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  language:
+                    type: string
+                  start_location:
+                    type: string
+                  goal_location:
+                    type: string
+        '404':
+          description: Wrong filter parameter or no entry matches the filter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /user/{username}:
+    delete:
+      description: delete specific user
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: username
+          description: username to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: user deleted successfully
+    get:
+      description: get a single user
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: username
+          description: ID of user to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: user returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password_hash:
+                    type: string
+        '404':
+          description: user id doesn't exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      description: modify an existing user
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: username
+          description: username to modify
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: User object to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: user modified successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password_hash:
+                    type: string
+        '404':
+          description: user id doesn't exist or missing json input parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /users:
+    post:
+      description: create a new user
+      tags:
+        - user
+      requestBody:
+        description: User object to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: user created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password_hash:
+                    type: string
+        '404':
+          description: user id already exist or missing json input parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      description: delete all entries in the list
+      tags:
+        - user
+      responses:
+        '200':
+          description: all entries deleted successfully
+    get:
+      description: gives list of all users
+      tags:
+        - user
+      responses:
+        '200':
+          description: list with at least one entry found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password_hash:
+                    type: string
+        '404':
+          description: user list is empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /location/{location_id}:
+    delete:
+      description: delete specific location
+      tags:
+        - location
+      parameters:
+        - in: path
+          name: location_id
+          description: unique_location to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: location deleted successfully
+    get:
+      description: get a single location
+      tags:
+        - location
+      parameters:
+        - in: path
+          name: location_id
+          description: ID of location to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: location returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unique_name:
+                    type: string
+                  type:
+                    type: integer
+                  x:
+                    type: integer
+                  'y':
+                    type: integer
+                  floor:
+                    type: integer
+        '404':
+          description: location id doesn't exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      description: modify an existing location
+      tags:
+        - location
+      parameters:
+        - in: path
+          name: location_id
+          description: unique_location to modify
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: location object to update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unique_name:
+                  type: string
+                type:
+                  type: integer
+                x:
+                  type: integer
+                'y':
+                  type: integer
+                floor:
+                  type: integer
+      responses:
+        '200':
+          description: location modified successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unique_name:
+                    type: string
+                  type:
+                    type: integer
+                  x:
+                    type: integer
+                  'y':
+                    type: integer
+                  floor:
+                    type: integer
+        '404':
+          description: location id doesn't exist or missing json input parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /locations:
+    post:
+      description: create a new location
+      tags:
+        - location
+      requestBody:
+        description: location object to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unique_name:
+                  type: string
+                type:
+                  type: integer
+                x:
+                  type: integer
+                'y':
+                  type: integer
+                floor:
+                  type: integer
+      responses:
+        '201':
+          description: location created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unique_name:
+                    type: string
+                  type:
+                    type: integer
+                  x:
+                    type: integer
+                  'y':
+                    type: integer
+                  floor:
+                    type: integer
+        '404':
+          description: location id already exist or missing json input parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      description: delete all entries in the list
+      tags:
+        - location
+      responses:
+        '200':
+          description: all entries deleted successfully
+    get:
+      description: gives list of all locations
+      tags:
+        - location
+      responses:
+        '200':
+          description: list with at least one entry found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unique_name:
+                    type: string
+                  type:
+                    type: integer
+                  x:
+                    type: integer
+                  'y':
+                    type: integer
+                  floor:
+                    type: integer
+        '404':
+          description: Location list is empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /login:
+    post:
+      description: login to website
+      tags:
+        - authentication
+      requestBody:
+        description: location object to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: user doesn't exist or wrong password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /logout:
+    get:
+      description: logout of website
+      tags:
+        - authentication
+      responses:
+        '200':
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+openapi: 3.0.2

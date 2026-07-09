@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5218ac25-14da-4b1d-ae56-da7a1559f5e2" name="Changes" comment="Backend does now correctly cache map, pose and path (until restart)&#10;- pose and path are not yet posted from test_map.py">
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="foxy" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IuKi2C4PEaDlfE4rrd8c0vUxUs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/linggify/code/PeTRA/petra_compose/docker-compose.yml&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flask_webserver/resources" />
+      <recent name="$PROJECT_DIR$/docker-data" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.simulate_transport">
+    <configuration name="create_example_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="petra_central_control" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="FLASK_BACKEND_URL" value="http://localhost:5000" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flask_webserver/common" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flask_webserver/common/create_example_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="simulate_transport" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="petra_central_control" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="FLASK_BACKEND_URL" value="http://localhost:5000" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flask_webserver/common" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flask_webserver/common/simulate_transport.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Flask (flask_webserver/app.py:app)" type="Python.FlaskServer" nameIsGenerated="true">
+      <option name="application" value="app" />
+      <module name="petra_central_control" />
+      <option name="target" value="$PROJECT_DIR$/flask_webserver/app.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="FLASK_BACKEND_URL" value="http://localhost:5000" />
+        <env name="MONGO_DATABASE" value="petra" />
+        <env name="MONGO_PASSWORD" value="petra" />
+        <env name="MONGO_USERNAME" value="petra" />
+        <env name="PETRA_DATABASE_URI" value="mongodb://localhost:27017" />
+        <env name="PETRA_FRONTEND_URL" value="http://localhost:3000" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Flask server.Flask (flask_webserver/app.py:app)" />
+      <item itemvalue="Python.simulate_transport" />
+      <item itemvalue="Python.create_example_data" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.simulate_transport" />
+        <item itemvalue="Python.create_example_data" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5218ac25-14da-4b1d-ae56-da7a1559f5e2" name="Changes" comment="" />
+      <created>1671026152259</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671026152259</updated>
+      <workItem from="1671026154559" duration="2295000" />
+      <workItem from="1671564707711" duration="1935000" />
+      <workItem from="1671577449917" duration="1157000" />
+      <workItem from="1673007691080" duration="6201000" />
+      <workItem from="1673025842278" duration="2069000" />
+      <workItem from="1673047836462" duration="3873000" />
+      <workItem from="1673088873942" duration="7525000" />
+      <workItem from="1673264632630" duration="49000" />
+      <workItem from="1673351317623" duration="609000" />
+      <workItem from="1674038307339" duration="2543000" />
+      <workItem from="1674054809956" duration="416000" />
+      <workItem from="1674472689568" duration="5705000" />
+      <workItem from="1674590193405" duration="46000" />
+      <workItem from="1674628519179" duration="49000" />
+      <workItem from="1674654373877" duration="6629000" />
+      <workItem from="1674674422536" duration="9972000" />
+      <workItem from="1674747610708" duration="4824000" />
+      <workItem from="1674806723101" duration="6396000" />
+      <workItem from="1674837275889" duration="3610000" />
+      <workItem from="1674902193770" duration="9921000" />
+      <workItem from="1674987786462" duration="16343000" />
+      <workItem from="1675030684464" duration="6658000" />
+      <workItem from="1675104964727" duration="70000" />
+      <workItem from="1675259690764" duration="3867000" />
+      <workItem from="1675340134626" duration="606000" />
+      <workItem from="1675850073758" duration="4275000" />
+      <workItem from="1676027770747" duration="71000" />
+      <workItem from="1676912979494" duration="1199000" />
+      <workItem from="1676936660748" duration="1228000" />
+      <workItem from="1677016610480" duration="2401000" />
+      <workItem from="1677067025999" duration="3050000" />
+      <workItem from="1677248346955" duration="3523000" />
+      <workItem from="1677263013786" duration="599000" />
+      <workItem from="1677361543691" duration="599000" />
+      <workItem from="1677501664656" duration="599000" />
+      <workItem from="1677545185894" duration="599000" />
+      <workItem from="1677628229172" duration="6063000" />
+      <workItem from="1677722540708" duration="599000" />
+      <workItem from="1677755728154" duration="65000" />
+      <workItem from="1678280044222" duration="7380000" />
+      <workItem from="1678311976149" duration="2926000" />
+      <workItem from="1678349410162" duration="658000" />
+      <workItem from="1678391922048" duration="1667000" />
+      <workItem from="1678663225072" duration="360000" />
+      <workItem from="1678890035666" duration="1046000" />
+      <workItem from="1679490409594" duration="2514000" />
+      <workItem from="1679564087645" duration="5432000" />
+      <workItem from="1679741510900" duration="28000" />
+      <workItem from="1680130349291" duration="1763000" />
+      <workItem from="1680167863419" duration="3502000" />
+      <workItem from="1680288646196" duration="472000" />
+      <workItem from="1681116103577" duration="5244000" />
+      <workItem from="1681217150044" duration="3646000" />
+      <workItem from="1681298589529" duration="7394000" />
+      <workItem from="1681368406286" duration="8935000" />
+      <workItem from="1681389433536" duration="2406000" />
+      <workItem from="1681476773156" duration="519000" />
+      <workItem from="1681975489417" duration="10784000" />
+      <workItem from="1682585218163" duration="11208000" />
+      <workItem from="1682928649351" duration="3661000" />
+      <workItem from="1683017313469" duration="2630000" />
+      <workItem from="1683114198497" duration="1267000" />
+      <workItem from="1683183062512" duration="9230000" />
+      <workItem from="1683225637315" duration="599000" />
+      <workItem from="1683788819160" duration="3196000" />
+      <workItem from="1683887546298" duration="941000" />
+      <workItem from="1684222628328" duration="2269000" />
+      <workItem from="1684309268352" duration="1982000" />
+      <workItem from="1684355676883" duration="2251000" />
+      <workItem from="1684386623403" duration="4540000" />
+      <workItem from="1684483616497" duration="4216000" />
+      <workItem from="1684594897799" duration="1130000" />
+      <workItem from="1684713334380" duration="1251000" />
+      <workItem from="1684735815657" duration="599000" />
+      <workItem from="1684747299122" duration="1212000" />
+      <workItem from="1684835833471" duration="625000" />
+    </task>
+    <task id="LOCAL-00001" summary="Database Location, user and password is now controlled using environment variables&#10;- transport_list.py now returns an empty list if the transport list is empty instead of an error 404 (which would suggest the endpoint does not exist)">
+      <created>1673092486752</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673092486752</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Docker image will now wait on specified hosts before starting the server">
+      <created>1673096768148</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673096768149</updated>
+    </task>
+    <task id="LOCAL-00003" summary="DATABASE_URI is now used to determine the location of the database">
+      <created>1673098433928</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673098433928</updated>
+    </task>
+    <task id="LOCAL-00004" summary="App now parses its own url to find its hostname and port">
+      <created>1673100461421</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673100461421</updated>
+    </task>
+    <task id="LOCAL-00005" summary="locations now use conventional integer ids, transports reference locations by id&#10;- removed the use of 404 errors where not correct and replaced them with 400 errors&#10;- adjusted create_example_data.py to reflect the changes in api">
+      <created>1674658299817</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1674658299817</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fixed error when adding transports">
+      <created>1678281506742</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678281506742</updated>
+    </task>
+    <task id="LOCAL-00007" summary="transports now require a platform number (use -1 for not existent)">
+      <created>1679575641525</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679575641525</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updated jobmanager to reflect newly available TransportStates">
+      <created>1681379365084</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681379365084</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated Emergency state id in readme to reflect the code&#10;- changed create_example_data.py to remove transports aswell&#10;  (if this was not done, there may be transports with invalid start/end locations and payloads left)">
+      <created>1681382641378</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681382641378</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fixed user not being able to authenticate using the server&#10;- added resources for path and position relay of the robot&#10;- TODO: adjust schemas to reflect actual format of the path and position">
+      <created>1681990572402</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1681990572402</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added endpoint for map data to backend">
+      <created>1682937581059</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682937581060</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Backend does now correctly cache map, pose and path (until restart)&#10;- pose and path are not yet posted from test_map.py">
+      <created>1683206849860</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1683206849860</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="finalimprovements" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Database Location, user and password is now controlled using environment variables&#10;- transport_list.py now returns an empty list if the transport list is empty instead of an error 404 (which would suggest the endpoint does not exist)" />
+    <MESSAGE value="Docker image will now wait on specified hosts before starting the server" />
+    <MESSAGE value="DATABASE_URI is now used to determine the location of the database" />
+    <MESSAGE value="App now parses its own url to find its hostname and port" />
+    <MESSAGE value="locations now use conventional integer ids, transports reference locations by id&#10;- removed the use of 404 errors where not correct and replaced them with 400 errors&#10;- adjusted create_example_data.py to reflect the changes in api" />
+    <MESSAGE value="fixed error when adding transports" />
+    <MESSAGE value="transports now require a platform number (use -1 for not existent)" />
+    <MESSAGE value="Updated jobmanager to reflect newly available TransportStates" />
+    <MESSAGE value="Updated Emergency state id in readme to reflect the code&#10;- changed create_example_data.py to remove transports aswell&#10;  (if this was not done, there may be transports with invalid start/end locations and payloads left)" />
+    <MESSAGE value="Fixed user not being able to authenticate using the server&#10;- added resources for path and position relay of the robot&#10;- TODO: adjust schemas to reflect actual format of the path and position" />
+    <MESSAGE value="Added endpoint for map data to backend" />
+    <MESSAGE value="Backend does now correctly cache map, pose and path (until restart)&#10;- pose and path are not yet posted from test_map.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backend does now correctly cache map, pose and path (until restart)&#10;- pose and path are not yet posted from test_map.py" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/petra_central_control$simulate_wheelchair_transport.coverage" NAME="simulate_transport Coverage Results" MODIFIED="1681305384480" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask_webserver/common" />
+    <SUITE FILE_PATH="coverage/petra_central_control$create_example_data.coverage" NAME="create_example_data Coverage Results" MODIFIED="1681140143109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask_webserver/common" />
+    <SUITE FILE_PATH="coverage/petra_central_control$Flask__flask_webserver_app_py_app_.coverage" NAME="Flask (flask_webserver/app.py:app) Coverage Results" MODIFIED="1684484158342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/petra_central_control$simulate_transport.coverage" NAME="simulate_transport Coverage Results" MODIFIED="1684494782111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask_webserver/common" />
+  </component>
+</project>

@@ -12,4 +12,4 @@ docker run --name petra_central_control \
     --net host \
     -e DISPLAY=$DISPLAY \
     --rm \
-    petra_central_control/ros:foxy
+    petra_central_control/ros:humble

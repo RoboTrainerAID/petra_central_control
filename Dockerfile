@@ -1,7 +1,7 @@
 ##############################################################################
 ##                                 Base Image                               ##
 ##############################################################################
-ARG ROS_DISTRO=foxy
+ARG ROS_DISTRO=humble
 FROM ros:$ROS_DISTRO-ros-base
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

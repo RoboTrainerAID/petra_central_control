@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-$ROS_DISTRO-tf-transformations \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m pip install -U pip setuptools transforms3d
+RUN python3 -m pip install "pip==24.3.1" "setuptools==65.5.0" transforms3d
 
 #############################################################################
 ##                                 Create User                             ##
@@ -52,8 +52,7 @@ RUN chmod +x /wait
 ##                                 User Dependecies                         ##
 ##############################################################################
 WORKDIR /home/$USER/ros2_ws/src
-RUN git config --global advice.detachedHead false
-RUN git clone --depth 1 -b v1.3.1 https://project_55_bot:glpat-DjsyN_ixYnq-duDb_Sip@www.w.hs-karlsruhe.de/gitlab/iras/research-projects/petra/petra_interfaces.git
+RUN git clone https://github.com/RoboTrainerAID/petra_interfaces.git
 
 COPY ./requirements.txt ./petra_central_control/
 RUN pip3 install -r petra_central_control/requirements.txt

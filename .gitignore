@@ -144,3 +144,8 @@ cython_debug/
 
 # misc
 .DS_Store
+
+# uv
+.python-version
+pyproject.toml
+uv.lock

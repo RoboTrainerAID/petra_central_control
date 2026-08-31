@@ -1,0 +1,58 @@
+{
+    "participant": {
+        "_id": "6a957f20647b849f04bc42b1",
+        "userId": "U600",
+        "is_finished": true,
+        "next_experiment_number": 2,
+        "clinical_scales": {
+            "tandem_walk": 22.0,
+            "robotrainer_max_force_right": 22.0,
+            "hand_grip_right": 22.0,
+            "ruler_drop": 22.0,
+            "jump_and_reach": 22.0,
+            "robotrainer_max_force_left": 22.0,
+            "robotrainer_max_force_front": 22.0,
+            "hand_grip_left": 22.0,
+            "single_leg_stance": 22.0
+        },
+        "weights": {
+            "mental_demand": 0,
+            "physical_demand": 1,
+            "temporal_demand": 2,
+            "performance": 3,
+            "effort": 4,
+            "frustration": 5
+        },
+        "demographics": {
+            "age": 42,
+            "gender": "non_binary",
+            "experience_level": "several"
+        },
+        "status": "completed",
+        "ifis": {
+            "general_fitness": 4,
+            "cardio_fitness": 4,
+            "muscle_strength": 3,
+            "speed_agility": 3,
+            "flexibility": 5
+        }
+    },
+    "experiments": [
+        {
+            "_id": "6a957f20647b849f04bc42b2",
+            "participant_id": "6a957f20647b849f04bc42b1",
+            "status": "completed",
+            "experiment_number": 1,
+            "extra_step": true,
+            "scores": {
+                "mental_demand": 95,
+                "physical_demand": 95,
+                "temporal_demand": 95,
+                "performance": 95,
+                "effort": 95,
+                "frustration": 100,
+                "task_difficulty": 3
+            }
+        }
+    ]
+}

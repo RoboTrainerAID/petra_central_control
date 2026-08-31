@@ -26,11 +26,11 @@ def generate_launch_description():
             emulate_tty=True,
             parameters=[config]
         ),
-        Node(
-            package='petra_central_control',
-            executable='test_map',
-            name='test_map',
-            output='screen',
-            emulate_tty=True
-        ),
+        # Node(
+        #     package='petra_central_control',
+        #     executable='test_map',
+        #     name='test_map',
+        #     output='screen',
+        #     emulate_tty=True
+        # ),
     ])

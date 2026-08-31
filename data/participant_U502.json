@@ -1,0 +1,74 @@
+{
+    "participant": {
+        "_id": "6a957ceb647b849f04bc42ae",
+        "userId": "U502",
+        "is_finished": true,
+        "next_experiment_number": 2,
+        "clinical_scales": {
+            "tandem_walk": 2.0,
+            "robotrainer_max_force_right": 2.0,
+            "hand_grip_right": 2.0,
+            "ruler_drop": 2.0,
+            "jump_and_reach": 2.0,
+            "robotrainer_max_force_left": 2.0,
+            "robotrainer_max_force_front": 2.0,
+            "hand_grip_left": 1.0,
+            "single_leg_stance": 2.0
+        },
+        "weights": {
+            "mental_demand": 0,
+            "physical_demand": 1,
+            "temporal_demand": 2,
+            "performance": 3,
+            "effort": 4,
+            "frustration": 5
+        },
+        "demographics": {
+            "age": 42,
+            "gender": "non_binary",
+            "experience_level": "several"
+        },
+        "status": "completed",
+        "ifis": {
+            "general_fitness": 4,
+            "cardio_fitness": 4,
+            "muscle_strength": 4,
+            "speed_agility": 4,
+            "flexibility": 4
+        }
+    },
+    "experiments": [
+        {
+            "_id": "6a957ceb647b849f04bc42af",
+            "participant_id": "6a957ceb647b849f04bc42ae",
+            "status": "completed",
+            "experiment_number": 1,
+            "extra_step": false,
+            "scores": {
+                "mental_demand": 100,
+                "physical_demand": 100,
+                "temporal_demand": 100,
+                "performance": 100,
+                "effort": 100,
+                "frustration": 100,
+                "task_difficulty": null
+            }
+        },
+        {
+            "_id": "6a957d13647b849f04bc42b0",
+            "participant_id": "6a957ceb647b849f04bc42ae",
+            "status": "completed",
+            "experiment_number": 2,
+            "extra_step": true,
+            "scores": {
+                "mental_demand": 95,
+                "physical_demand": 95,
+                "temporal_demand": 95,
+                "performance": 95,
+                "effort": 95,
+                "frustration": 95,
+                "task_difficulty": 5
+            }
+        }
+    ]
+}

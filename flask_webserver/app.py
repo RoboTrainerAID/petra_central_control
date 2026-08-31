@@ -25,6 +25,14 @@ from flask_webserver.resources.user import User
 from flask_webserver.resources.user_list import UserList
 from flask_webserver.resources.location import Location
 from flask_webserver.resources.location_list import LocationList
+from flask_webserver.resources.participant import Participant
+from flask_webserver.resources.next_experiment import NextExperiment
+from flask_webserver.resources.submit_experiment import SubmitExperiment
+from flask_webserver.resources.weights import SaveWeights
+from flask_webserver.resources.demographics import SaveDemographics
+from flask_webserver.resources.ifis import SaveIFIS
+from flask_webserver.resources.sus import SaveSus
+from flask_webserver.resources.clinical_scales import ClinicalScales
 from flask_webserver.common.authentication import Authentication
 import os
 
@@ -98,6 +106,8 @@ transports_db = MongoDB(table="transports")
 locations_db = MongoDB(table="locations")
 payloads_db = MongoDB(table="payloads")
 users_db = MongoDB(table="users")
+participants_db = MongoDB(table="participants")
+experiments_db = MongoDB(table="experiments")
 
 transports_args = {
     'transports_db': transports_db,
@@ -123,6 +133,43 @@ local_dicts_args = {
     'getDict': getDict,
 }
 
+participant_args = {
+    'experiments_db': experiments_db,
+    'participants_db': participants_db,
+}
+
+next_experiment_args = {
+    'experiments_db': experiments_db,
+    'participants_db': participants_db,
+}
+
+submit_experiment_args = {
+    'experiments_db': experiments_db,
+    'participants_db': participants_db,
+}
+
+save_weights_args = {
+    'participants_db': participants_db,
+}
+
+save_demographics_args = {
+    'participants_db': participants_db,
+}
+
+save_ifis_args = {
+    'participants_db': participants_db,
+}
+
+save_sus_args = {
+    'participants_db': participants_db,
+    'experiments_db': experiments_db,
+}
+
+save_clinical_scales_args = {
+    'participants_db': participants_db,
+}
+
+
 api.add_resource(TransportList, '/transports', resource_class_kwargs=transports_args)
 api.add_resource(Transport, '/transport/<int:transport_id>', resource_class_kwargs=transports_args)
 api.add_resource(UserList, '/users', resource_class_kwargs=users_args)
@@ -134,6 +181,14 @@ api.add_resource(Payload, '/payload/<int:payload_id>', resource_class_kwargs=pay
 api.add_resource(RobotPositionRelay, '/relay/position', resource_class_kwargs=local_dicts_args)
 api.add_resource(RobotPathRelay, '/relay/path', resource_class_kwargs=local_dicts_args)
 api.add_resource(RobotMapRelay, '/relay/map', resource_class_kwargs=local_dicts_args)
+api.add_resource(Participant, '/participants', resource_class_kwargs=participant_args)
+api.add_resource(NextExperiment, '/participants/<string:participant_db_id>/next-experiment', resource_class_kwargs=next_experiment_args)
+api.add_resource(SubmitExperiment, '/experiments/<string:experiment_id>/submit', resource_class_kwargs=submit_experiment_args)
+api.add_resource(SaveWeights, '/participants/<string:participant_id>/weights', resource_class_kwargs=save_weights_args)
+api.add_resource(SaveDemographics, '/participants/<string:participant_id>/demographics', resource_class_kwargs=save_demographics_args)
+api.add_resource(SaveIFIS, '/participants/<string:participant_id>/ifis', resource_class_kwargs=save_ifis_args)
+api.add_resource(SaveSus, '/participants/<string:participant_id>/sus', resource_class_kwargs=save_sus_args)
+api.add_resource(ClinicalScales, '/participants/<string:participant_id>/clinical-scales', resource_class_kwargs=save_clinical_scales_args)
 
 spec.path(resource=Transport, api=api)
 spec.path(resource=TransportList, api=api)
@@ -146,7 +201,14 @@ spec.path(resource=PayloadList, api=api)
 spec.path(resource=RobotPositionRelay, api=api)
 spec.path(resource=RobotPathRelay, api=api)
 spec.path(resource=RobotMapRelay, api=api)
-
+spec.path(resource=Participant, api=api)
+spec.path(resource=NextExperiment, api=api)
+spec.path(resource=SubmitExperiment, api=api)
+spec.path(resource=SaveWeights, api=api)
+spec.path(resource=SaveDemographics, api=api)
+spec.path(resource=SaveIFIS, api=api)
+spec.path(resource=SaveSus, api=api)
+spec.path(resource=ClinicalScales, api=api)
 # add error schemas to json
 #spec.components.schema("ValidationErrorSchema", ValidationErrorSchema)
 #spec.components.schemas("SingleMessageErrorSchema", SingleMessageErrorSchema)

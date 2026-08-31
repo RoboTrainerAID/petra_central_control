@@ -15,6 +15,7 @@ if [ "$OS" = "Linux" ]; then
     docker run --name petra_central_control_dev \
         -v $PWD/flask_webserver:/home/docker/ros2_ws/src/petra_central_control/flask_webserver \
         -v $PWD/ros:/home/docker/ros2_ws/src/petra_central_control/ros \
+        -v $PWD/data:/home/docker/data \
         --env-file .env \
         -it \
         --privileged \
@@ -27,6 +28,7 @@ else
     docker run --name petra_central_control_dev \
         -v $PWD/flask_webserver:/home/docker/ros2_ws/src/petra_central_control/flask_webserver \
         -v $PWD/ros:/home/docker/ros2_ws/src/petra_central_control/ros \
+        -v $PWD/data:/home/docker/data \
         --add-host=host.docker.internal:host-gateway \
         --env-file .env.macos \
         -it \

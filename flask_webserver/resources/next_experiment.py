@@ -5,20 +5,21 @@ from bson.errors import InvalidId
 from flask_webserver.common.mongo_db import MongoDB
 
 
+
 class NextExperiment(Resource):
 
     def __init__(self, experiments_db: MongoDB, participants_db: MongoDB):
         self.experiments_db = experiments_db
         self.participants_db = participants_db
 
-    def get(self, participant_db_id: str):
+    def get(self, participant_id: str):
         ''' ---
-            description: Poll to check if a new robotic experiment is ready or if session is finished
+            description: Pull to check if a new robotic experiment is ready or if session is finished
             tags:
               - experiment
             parameters:
               - in: path
-                name: participant_db_id
+                name: participant_id
                 description: ID of the participant polling for tasks
                 required: true
                 schema:
@@ -45,7 +46,7 @@ class NextExperiment(Resource):
         
         if exp_collection is not None and hasattr(exp_collection, 'find_one'):
             ready_exp = exp_collection.find_one({
-                "participant_id": str(participant_db_id),
+                "participant_id": str(participant_id),
                 "status": "ready"
             })
         else:
@@ -63,10 +64,8 @@ class NextExperiment(Resource):
             }, 200
 
         # Check participant status using dump_from_id
-        next_exp_num = 1  # Default next experiment number
         try:
-            participant = getattr(self.participants_db, 'collection', getattr(self.participants_db, 'table', None)).find_one({"_id": ObjectId(participant_db_id)})
-            next_exp_num = participant.get("next_experiment_number", 1)
+            participant = getattr(self.participants_db, 'collection', getattr(self.participants_db, 'table', None)).find_one({"_id": ObjectId(participant_id)})
             if participant and participant.get("is_finished"):
                 return {"status": "finished"}, 200
         except InvalidId:
@@ -74,5 +73,5 @@ class NextExperiment(Resource):
 
         return {
             "status": "waiting",
-            "next_experiment_number": next_exp_num
+            "next_experiment_number": exp_num
         }, 200

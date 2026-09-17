@@ -5,7 +5,7 @@ from marshmallow import fields, Schema
 
 from flask_webserver.common.mongo_db import MongoDB
 from flask_webserver.resources.location_list import LocationList
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from flask_restful import Resource, Api
 from apispec import APISpec
@@ -13,6 +13,7 @@ from apispec_flask_restful import RestfulPlugin
 # from apispec_webframeworks.flask import FlaskPlugin
 # from flask_pymongo import PyMongo
 import json
+from flask_swagger_ui import get_swaggerui_blueprint
 
 from flask_webserver.resources.payload import Payload
 from flask_webserver.resources.payload_list import PayloadList
@@ -33,6 +34,10 @@ from flask_webserver.resources.demographics import SaveDemographics
 from flask_webserver.resources.ifis import SaveIFIS
 from flask_webserver.resources.sus import SaveSus
 from flask_webserver.resources.clinical_scales import ClinicalScales
+from flask_webserver.resources.new_experiment import NewExperiment
+from flask_webserver.resources.waiting_experiment import WaitingExperiment
+from flask_webserver.resources.change_experiment_status import ChangeExperimentStatus
+from flask_webserver.resources.get_all_experiments import AllExperimentsFromUser
 from flask_webserver.common.authentication import Authentication
 import os
 
@@ -59,15 +64,29 @@ spec = APISpec(
     ),
     servers=[dict(
         description="Flask",
-        url="http://192.168.0.50:5000/"
+        url="/"
     )
     ],
-    tags=[dict(
+    tags=[
+        dict(
+        name="participant",
+        description="Access to participant data"),
+        dict(
+        name="experiment",
+        description="Access to experiment data"),
+        dict(
         name="transport",
         description="Access to transport data"),
         dict(
         name="user",
-        description="Access to user data")],
+        description="Access to user data"),
+        dict(
+        name="location",
+        description="Access to location data"),
+        dict(
+        name="payload",
+        description="Access to payload data"),
+    ],
     plugins=[RestfulPlugin(), MarshmallowPlugin()],  # FlaskPlugin()
 )
 
@@ -134,8 +153,16 @@ local_dicts_args = {
 }
 
 participant_args = {
-    'experiments_db': experiments_db,
     'participants_db': participants_db,
+}
+
+experiment_args = {
+    'experiments_db': experiments_db,
+}
+
+participant_and_experiment_args = {
+    'participants_db': participants_db,
+    'experiments_db': experiments_db,
 }
 
 next_experiment_args = {
@@ -169,6 +196,11 @@ save_clinical_scales_args = {
     'participants_db': participants_db,
 }
 
+new_experiment_args = {
+    'experiments_db': experiments_db,
+    'participants_db': participants_db,
+}
+
 
 api.add_resource(TransportList, '/transports', resource_class_kwargs=transports_args)
 api.add_resource(Transport, '/transport/<int:transport_id>', resource_class_kwargs=transports_args)
@@ -181,14 +213,18 @@ api.add_resource(Payload, '/payload/<int:payload_id>', resource_class_kwargs=pay
 api.add_resource(RobotPositionRelay, '/relay/position', resource_class_kwargs=local_dicts_args)
 api.add_resource(RobotPathRelay, '/relay/path', resource_class_kwargs=local_dicts_args)
 api.add_resource(RobotMapRelay, '/relay/map', resource_class_kwargs=local_dicts_args)
-api.add_resource(Participant, '/participants', resource_class_kwargs=participant_args)
-api.add_resource(NextExperiment, '/participants/<string:participant_db_id>/next-experiment', resource_class_kwargs=next_experiment_args)
+api.add_resource(Participant, '/participants/<string:userId>', resource_class_kwargs=participant_args)
+api.add_resource(NextExperiment, '/participants/<string:participant_id>/next-experiment', resource_class_kwargs=next_experiment_args)
 api.add_resource(SubmitExperiment, '/experiments/<string:experiment_id>/submit', resource_class_kwargs=submit_experiment_args)
 api.add_resource(SaveWeights, '/participants/<string:participant_id>/weights', resource_class_kwargs=save_weights_args)
 api.add_resource(SaveDemographics, '/participants/<string:participant_id>/demographics', resource_class_kwargs=save_demographics_args)
 api.add_resource(SaveIFIS, '/participants/<string:participant_id>/ifis', resource_class_kwargs=save_ifis_args)
 api.add_resource(SaveSus, '/participants/<string:participant_id>/sus', resource_class_kwargs=save_sus_args)
 api.add_resource(ClinicalScales, '/participants/<string:participant_id>/clinical-scales', resource_class_kwargs=save_clinical_scales_args)
+api.add_resource(WaitingExperiment, '/participants/<string:participant_id>/waiting-experiment', resource_class_kwargs=participant_and_experiment_args)
+api.add_resource(NewExperiment, '/participants/<string:participant_id>/new-experiment', resource_class_kwargs=new_experiment_args)
+api.add_resource(ChangeExperimentStatus, '/experiments/<string:experiment_id>/change-status', resource_class_kwargs=experiment_args)
+api.add_resource(AllExperimentsFromUser, '/participants/<string:participant_id>/experiments', resource_class_kwargs=experiment_args)
 
 spec.path(resource=Transport, api=api)
 spec.path(resource=TransportList, api=api)
@@ -209,9 +245,28 @@ spec.path(resource=SaveDemographics, api=api)
 spec.path(resource=SaveIFIS, api=api)
 spec.path(resource=SaveSus, api=api)
 spec.path(resource=ClinicalScales, api=api)
+spec.path(resource=NewExperiment, api=api)
+spec.path(resource=WaitingExperiment, api=api)
+spec.path(resource=ChangeExperimentStatus, api=api)
+spec.path(resource=AllExperimentsFromUser, api=api)
 # add error schemas to json
 #spec.components.schema("ValidationErrorSchema", ValidationErrorSchema)
 #spec.components.schemas("SingleMessageErrorSchema", SingleMessageErrorSchema)
+
+# Route to serve the generated OpenAPI spec as JSON
+@app.route("/swagger.json")
+def create_swagger_spec():
+    return jsonify(spec.to_dict())
+
+# Register Swagger UI Blueprint at /swagger
+SWAGGER_URL = '/swagger'
+API_URL = '/swagger.json'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={'app_name': "PeTRA Job Manager API"}
+)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 # with app.test_request_context():
 #     spec.path(view=hello_world)

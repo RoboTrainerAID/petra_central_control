@@ -15,6 +15,43 @@ class ClinicalScales(ValidatedResource):
     def _schema(self) -> Schema:
         return ClinicalScalesSchema()
 
+    def get(self, participant_id: str):
+        ''' ---
+            description: Get clinical scales of a participant by userId
+            tags:
+              - participant
+            parameters:
+              - in: path
+                name: participant_id
+                description: ID of the participant
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    description: Clinical scales retrieved successfully
+                404:
+                    description: Participant not found
+        '''
+        participants_collection = getattr(
+            self.database, 'collection', getattr(self.database, 'table', None)
+        )
+
+        participant = None
+        try:
+            participant = participants_collection.find_one({"_id": ObjectId(participant_id)})
+        except InvalidId:
+            pass
+
+        if not participant:
+            participant = participants_collection.find_one({"_id": participant_id})
+
+        if not participant:
+            return {"message": f"Participant with ID '{participant_id}' not found."}, 404
+
+        clinical_scales = participant.get("clinical_scales", {})
+        return {"user_id": participant_id, "clinical_scales": clinical_scales}, 200
+
     def post(self, participant_id: str):
         ''' ---
             description: Save clinical scales assessment data for a participant
@@ -47,7 +84,6 @@ class ClinicalScales(ValidatedResource):
             self.database, 'collection', getattr(self.database, 'table', None)
         )
 
-        # 1. Resolve participant ID (trying both ObjectId and string)
         participant = None
         target_p_id = participant_id
 
@@ -64,7 +100,6 @@ class ClinicalScales(ValidatedResource):
         if not participant:
             return {"message": f"Participant with ID '{participant_id}' not found."}, 404
 
-        # 2. Update participant document with clinical scales measurements
         self.database.update(
             id=target_p_id,
             data={

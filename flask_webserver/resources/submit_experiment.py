@@ -18,7 +18,7 @@ class SubmitExperiment(ValidatedResource):
 
     def post(self, experiment_id: str):
         ''' ---
-            description: Submit questionnaire scores for a finished experiment trial and prepare next experiment
+            description: Submit questionnaire scores for a finished experiment trial
             tags:
               - experiment
             parameters:
@@ -68,31 +68,5 @@ class SubmitExperiment(ValidatedResource):
                 "status": "completed"
             }
         )
-
-        # 3. Find associated participant and create the next experiment
-        if current_exp and "participant_id" in current_exp:
-            raw_p_id = current_exp["participant_id"]
-
-            # Try looking up participant by BSON ObjectId first, then fallback to string
-            participant = None
-            try:
-                participant = participants_collection.find_one({"_id": ObjectId(raw_p_id)})
-            except InvalidId:
-                pass
-
-            if not participant:
-                participant = participants_collection.find_one({"_id": str(raw_p_id)})
-
-            # 4. If participant is not finished, insert the next experiment document
-            if participant and not participant.get("is_finished"):
-                next_exp_num = participant.get("next_experiment_number", 2)
-
-                new_experiment = {
-                    "participant_id": str(participant["_id"]),
-                    "status": "waiting",
-                    "experiment_number": next_exp_num,
-                    "extra_step": False  # Default value; can be updated based on your logic
-                }
-                self.database.insert(new_experiment)
 
         return {"message": "Experiment answers successfully recorded."}, 200

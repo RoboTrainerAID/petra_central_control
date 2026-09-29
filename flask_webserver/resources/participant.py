@@ -88,8 +88,8 @@ class Participant(ValidatedResource):
         if not participant:
             return {"message": f"Participant with ID '{userId}' not found."}, 404
 
-        participant_id = str(participant["_id"])
-        return participant_id, 200
+        participant["_id"] = str(participant["_id"])
+        return participant, 200
 
     def patch(self, userId: str = None, participant_id: str = None):
         """

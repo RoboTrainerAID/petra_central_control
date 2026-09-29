@@ -48,8 +48,11 @@ app = Flask(__name__)
 frontend_url = os.environ["PETRA_FRONTEND_URL"]
 
 cors = CORS(app=app, origins=[
-            frontend_url,
-            "http://localhost:3000"])
+    frontend_url,
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://192.168.1.5:3000"  # Replace with your Mac's actual local Wi-Fi/LAN IP
+])
 api = Api(app)
 spec = APISpec(
     title="PeTRA Job Manager",

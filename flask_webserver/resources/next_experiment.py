@@ -73,5 +73,4 @@ class NextExperiment(Resource):
 
         return {
             "status": "waiting",
-            "next_experiment_number": exp_num
         }, 200

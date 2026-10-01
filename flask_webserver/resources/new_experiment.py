@@ -61,6 +61,14 @@ class NewExperiment(ValidatedResource):
             "participant_id": str(participant["_id"]),
         }
         new_experiment.update(json_data)
-        self.database.insert(new_experiment)
+        
+        # Insert and get the result object
+        result = self.database.insert(new_experiment)
+        
+        # Extract the inserted ID and convert it to a string
+        experiment_id = str(result.inserted_id)
 
-        return {"message": "Experiment answers successfully recorded."}, 200
+        return {
+            "message": "Experiment answers successfully recorded.",
+            "experiment_id": experiment_id
+        }, 200

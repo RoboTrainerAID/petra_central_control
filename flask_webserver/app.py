@@ -38,6 +38,7 @@ from flask_webserver.resources.new_experiment import NewExperiment
 from flask_webserver.resources.waiting_experiment import WaitingExperiment
 from flask_webserver.resources.change_experiment_status import ChangeExperimentStatus
 from flask_webserver.resources.get_all_experiments import AllExperimentsFromUser
+from flask_webserver.resources.get_experiment import Experiment
 from flask_webserver.common.authentication import Authentication
 import os
 
@@ -228,6 +229,7 @@ api.add_resource(WaitingExperiment, '/participants/<string:participant_id>/waiti
 api.add_resource(NewExperiment, '/participants/<string:participant_id>/new-experiment', resource_class_kwargs=new_experiment_args)
 api.add_resource(ChangeExperimentStatus, '/experiments/<string:experiment_id>/change-status', resource_class_kwargs=experiment_args)
 api.add_resource(AllExperimentsFromUser, '/participants/<string:participant_id>/experiments', resource_class_kwargs=experiment_args)
+api.add_resource(Experiment, '/experiments/<string:experiment_id>', resource_class_kwargs=experiment_args)
 
 spec.path(resource=Transport, api=api)
 spec.path(resource=TransportList, api=api)
@@ -252,6 +254,7 @@ spec.path(resource=NewExperiment, api=api)
 spec.path(resource=WaitingExperiment, api=api)
 spec.path(resource=ChangeExperimentStatus, api=api)
 spec.path(resource=AllExperimentsFromUser, api=api)
+spec.path(resource=Experiment, api=api)
 # add error schemas to json
 #spec.components.schema("ValidationErrorSchema", ValidationErrorSchema)
 #spec.components.schemas("SingleMessageErrorSchema", SingleMessageErrorSchema)
